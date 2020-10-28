@@ -49,6 +49,19 @@ def knn(data,test, sens, percent):
     else:
         print("Different from fingerprint")
 
-fingerprint = logger('fingerprint')
+def filelog(filename, dict):
+    f = open(filename, 'w')
+    f.write(str(dict))
+    f.close()
+
+def process(filename):
+    f = open(filename,'r')
+    d = f.readline()
+    f.close()
+    return eval(d)
+
+# fingerprint = logger('fingerprint')
+# filelog('log.txt',fingerprint)
 testcase = logger('testcase')
+fingerprint = process('log.txt')
 knn(fingerprint, testcase, 0.05, 0.6) #sens, acc 
