@@ -8,7 +8,7 @@ def logger(name):
     log = []
     while not done:
         c = msvcrt.getch()
-        if c == b'\x1b':
+        if c == b'\r':
             print("END LOGGING")
             break
         if len(log) == 0: 
@@ -62,6 +62,22 @@ def process(filename):
 
 # fingerprint = logger('fingerprint')
 # filelog('log.txt',fingerprint)
-testcase = logger('testcase')
-fingerprint = process('log.txt')
-knn(fingerprint, testcase, 0.05, 0.6) #sens, acc 
+# testcase = logger('testcase')
+# fingerprint = process('log.txt')
+# knn(fingerprint, testcase, 0.04, 0.5) #sens, acc 
+
+
+while True:
+    print('--------------------------')
+    print("Select mode")
+    print("0 = logging to file")
+    print("1 = test fingerprint")
+    cmd = input("Select : ").strip()
+    if cmd == 'q': break
+    elif cmd == '0':
+        fingerprint = logger('fingerprint')
+        filelog('log.txt',fingerprint)
+    elif cmd == '1':
+        testcase = logger('testcase')
+        fingerprint = process('log.txt')
+        knn(fingerprint, testcase, 0.04, 0.5) #sens, acc 
